@@ -265,14 +265,14 @@ const Trangchu = () => {
                         </TouchableOpacity>
                       </ScrollView>
                     </View> 
-                    {/* <View style={{marginHorizontal:8}}>
+                    <View style={{marginHorizontal:8}}>
                        <FlatList
                          data={dulieu}
                          renderItem={renderItem}
                          keyExtractor={item => item.id}
                          numColumns={2}
                        /> 
-                    </View> */}
+                    </View>
             </SafeAreaView>
           </ScrollView>
         </View>

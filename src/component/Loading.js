@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
       left:'50%',
       zIndex:10,
       transform:[
-        {translateY:-50},{translateX:-10}
+        {translateY:-100},{translateX:-10}
       ]
     },
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text,Image,SafeAreaView,TouchableOpacity,StyleSheet } from 'react-native';
+import { View, Text,Image,TextInput,TouchableOpacity,StyleSheet } from 'react-native';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -16,7 +16,7 @@ import Giohang from '../component/Giohang';
 const LogoTitle = ()=> {
   return (
     <View style={{flexDirection:'row'}}>
-      <Text style={styles.headtxt}>chào bạn mới</Text>
+      <Text style={styles.headtxttitle}>chào bạn mới</Text>
       <Icon name="star-four-points-outline" size={25} color="#FDBC25" />
     </View>
 
@@ -38,45 +38,93 @@ const HeadRight = ()=> {
 const DathangLeft =()=>{
   return (
       <View >
-      <Image
-            style={{width:50,height:50}} 
-            source={require('../img/ship.jpg')} 
-      />
-      </View>
+            <View style={{flexDirection:'row',marginVertical:10}}>
+              <View style={{marginRight:10}} >
+                <Image
+                      style={{width:50,height:50,borderRadius:50}} 
+                      source={require('../img/ship.jpg')} 
+                />
+              </View>
+              <View>
+                <TouchableOpacity style={{flexDirection:'row'}}>
+                  <Text style={styles.headtxt}>Giao tận nơi</Text>
+                  <Icon name={'chevron-down'} size={25} color="black" style={{marginRight:10}} />
+                </TouchableOpacity>
+                
+                <Text numberOfLines={1} style={styles.txtthongbao}>Các sản phẩm sẽ được giao đến địa chỉ...</Text>
+              </View>
+            </View>
+            <View style={{flexDirection:'row',marginVertical:10}}>
+              <TouchableOpacity style={styles.headtexticon}>
+                <Text style={{fontSize:18, marginLeft:10,color:'gray'}}>Thực đơn</Text>
+                <Icon name={'chevron-down'} size={25} color="black" style={{marginRight:10}} />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.headicon}>
+                <Icon name={'magnify'} size={25} color="black" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.headicon}>
+                <Icon name={'heart-outline'} size={25} color="black" />
+              </TouchableOpacity>
+            </View>
+        </View>
   );
 }
- const DathangRight = () =>{
-  
-  // < style={{flex:1}}>
-  return(
-    <View>
-      <Text style={styles.headtxt}>Giao tận nơi</Text>
-      <Text numberOfLines={1} style={styles.txtthongbao}>Các sản phẩm sẽ được giao đến địa chỉ............</Text>
-    </View>
-  );
- }
- const DathangTitle = () =>{
 
- }
 //phần cửa hàng
+const Cuahanghead = ()=> {
+  return (
+    <View>
+      <View style={{width:'100%',flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.headtxttitle}>Cửa hàng</Text>
+        </View>
+        <View style={{flexDirection:'row'}}>
+          <TouchableOpacity  style={[styles.iconhead1]}>
+              <Icon name="ticket-confirmation-outline" size={25} color="#FDBC25" />
+          </TouchableOpacity>
+          <TouchableOpacity  style={[styles.iconhead2]}>
+              <Icon name="bell-outline" size={25} color="black" />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{flexDirection:'row'}}>
+        <TouchableOpacity style={styles.headtexticon}>
+          <Text style={{fontSize:18, marginLeft:10,color:'gray'}}>Tìm kiếm</Text>
+          <Icon name={'magnify'} size={25} color="black" style={{marginRight:10}} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.headbando}>
+          <Icon name={'map-outline'} size={25} color="black" />
+          <Text style={{fontSize:18,fontWeight:'bold',marginHorizontal:10}}>Bản đồ</Text>
+        </TouchableOpacity> 
+      </View>
+  </View>
+  );
+}
 //phần ưu đãi
 const UudaiLeft = ()=> {
   return (
-    <View style={{flexDirection:'row'}}>
-      <Text style={styles.headtxt}>Ưu đãi</Text>
-    </View>
-
-  );
-}
-const UudaiRight = ()=> {
-  return (
-    <View style={{flexDirection:'row',marginHorizontal:16}}>
-    <TouchableOpacity  style={[styles.iconhead1]}>
-        <Icon name="ticket-confirmation-outline" size={25} color="#FDBC25" />
-    </TouchableOpacity>
-    <TouchableOpacity  style={[styles.iconhead2]}>
-        <Icon name="bell-outline" size={25} color="black" />
-    </TouchableOpacity>
+<View>
+      <View style={{width:'100%',flexDirection:'row',justifyContent:'space-between',marginBottom:10}}>
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+          <Text style={styles.headtxttitle}>Cửa hàng</Text>
+        </View>
+        <View style={{flexDirection:'row'}}>
+          <TouchableOpacity  style={[styles.iconhead1]}>
+              <Icon name="ticket-confirmation-outline" size={25} color="#FDBC25" />
+          </TouchableOpacity>
+          <TouchableOpacity  style={[styles.iconhead2]}>
+              <Icon name="bell-outline" size={25} color="black" />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{flexDirection:'row'}}>
+        <TouchableOpacity style={styles.headtichdiem}>
+          <Text style={{fontSize:18, marginLeft:10,color:'gray'}}>Tích điểm</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.headbando}>
+          <Text style={{fontSize:18, marginLeft:10,color:'gray'}}>Đổi ưu đãi</Text>
+        </TouchableOpacity> 
+      </View>
   </View>
   );
 }
@@ -123,33 +171,32 @@ const router = () => {
         />
         <Tab.Screen name="Đặt hàng" component={Dathang} 
           options={{ 
-            headerShown: false,
+            headerStyle:{height:150},
           // headerLeft: (props) => <DathangLeft {...props} />,
           // headerRight: (props) => <DathangRight {...props} />,
-          // headerTitle: (props) => <DathangLeft {...props} />,
+          headerTitle: (props) => <DathangLeft {...props} />,
           
         }}
         />
         <Tab.Screen name="Cửa hàng" component={Cuahang} 
           options={{
-          headerTitle: (props) => <LogoTitle {...props} />,
-          headerRight: (props) => <HeadRight {...props} />,
+          headerStyle:{height:130},
+          headerTitle: (props) => <Cuahanghead {...props} />,
+          // headerRight: (props) => <HeadRight {...props} />,
           
         }}
         />
         <Tab.Screen name="Giỏ hàng" component={Giohang} 
           options={{
-          headerTitle: (props) => <LogoTitle {...props} />,
-          headerRight: (props) => <HeadRight {...props} />,
+          // headerTitle: (props) => <LogoTitle {...props} />,
+          // headerRight: (props) => <HeadRight {...props} />,
           
         }}
         />
         <Tab.Screen name="Ưu đãi" component={Tichdiem}
         options={{
-          
+          headerStyle:{height:130},
           headerTitle: (props) => <UudaiLeft {...props} />,
-          headerRight: (props) => <UudaiRight {...props} />,
-          
         }}
         />
         <Tab.Screen name="Khác" component={Khac} 
@@ -167,7 +214,7 @@ const iconhead ={
   // marginHorizontal:5,
         alignItems:'center',
         justifyContent:'center',
-        borderRadius:20,
+        borderRadius:50,
         borderColor:'#fdfdfd',
         elevation:3,
 }
@@ -176,20 +223,52 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:'bold',
     },
+    headtxttitle:{
+      fontSize:24,
+      fontWeight:'bold',
+    },
     txtthongbao:{
       fontSize:18,
       color:'#999999'
     },
     iconhead1:{
       ...iconhead,
-        height:40,
-        width:60,
+        height:50,
+        width:70,
         
       },
     iconhead2:{
       ...iconhead,
-        height:40,
-        width:40,
+        height:50,
+        width:50,
+    },
+    headicon:{
+      height:40,
+      width:40,
+      backgroundColor: "#F0F0F0",
+      justifyContent:'center',
+      alignItems:'center',
+      borderRadius:10,
+      marginRight:10,
+      flexDirection:'row',
+    },
+    headtexticon:{
+      flexDirection:'row',
+      width:'75%',
+      height:40,
+      backgroundColor:'#F0F0F0',
+      justifyContent:'space-between',
+      alignItems:'center',
+      borderRadius:10, 
+      marginRight:10
+    },
+    headbando:{
+      flexDirection:'row',
+      justifyContent:'center',
+      alignItems:'center',
+    },
+    headtichdiem:{
+
     },
 })
 export default router;

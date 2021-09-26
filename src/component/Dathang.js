@@ -13,7 +13,7 @@ const Dathang = () => {
   const [isVisible,setisVisible] = useState(false)
   const [isModal,setModal] = useState()
   const [clickheart,setclickheart] = useState(false)
-  const [loading,setLoading] = useState(false)
+  const [isloading,setLoading] = useState(false)
   
   // ===============
   const Close = ()=>{
@@ -69,38 +69,11 @@ const Dathang = () => {
       //     {arr.map(e => <Text>{e}</Text>)}
       //   </View> */}
     return (
-        <View>
-          <View style={{backgroundColor:'white'}}>
-            <View style={{flexDirection:'row',marginHorizontal:10,marginVertical:10}}>
-              <View style={{marginRight:10}} >
-                <Image
-                      style={{width:50,height:50,borderRadius:50}} 
-                      source={require('../img/ship.jpg')} 
-                />
-              </View>
-              <View>
-                <TouchableOpacity style={{flexDirection:'row'}}>
-                  <Text style={styles.headtxt}>Giao tận nơi</Text>
-                  <Icon name={'chevron-down'} size={25} color="black" style={{marginRight:10}} />
-                </TouchableOpacity>
-                
-                <Text numberOfLines={1} style={styles.txtthongbao}>Các sản phẩm sẽ được giao đến địa chỉ............</Text>
-              </View>
-            </View>
-            <View style={{flexDirection:'row',marginHorizontal:10,marginVertical:10}}>
-              <TouchableOpacity style={styles.headtexticon}>
-                <Text style={{fontSize:18, marginLeft:10,color:'gray'}}>Thực đơn</Text>
-                <Icon name={'chevron-down'} size={25} color="black" style={{marginRight:10}} />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.headicon}>
-                <Icon name={'magnify'} size={25} color="black" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.headicon}>
-                <Icon name={'heart-outline'} size={25} color="black" />
-              </TouchableOpacity>
-            </View>
-          </View>
-       
+        <SafeAreaView style={{flex:1}}>
+        <ScrollView style={{flex:1}}>
+          { isloading && <Loading/>}
+          {/* <Loading/> */}
+                <View style={{flex:1}}>
                   <Text style={styles.titlecf}>Trà trái cây - Trà sữa</Text>
                   <FlatList
                     data={product}
@@ -108,6 +81,9 @@ const Dathang = () => {
                     keyExtractor={item => item._id?.toString()}
                     numColumns={1}
                   /> 
+                  
+                </View>
+               
               <Modal
               
                 testID={'modal'}
@@ -153,26 +129,16 @@ const Dathang = () => {
                    <TouchableOpacity style={styles.nutx1} onPress={Close}>
                         <Icon name="close" size={20} color="white" />
                   </TouchableOpacity>
-                  <View style={{position:'absolute',bottom:0, height:height-600,width:'100%', backgroundColor:'white',borderTopColor:'#aaa',borderTopWidth:1,flex:1}}>
-                      <View style={{width:width,flex:1,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                        <TouchableOpacity style={styles.minplus}>
-                          <Icon name={'minus'} size={15} color="black" />
-                        </TouchableOpacity>
-                        <View style={{width:60,height:30,justifyContent:'center',alignItems:'center'}}>
-                          <Text style={{fontSize:16,fontWeight:'bold'}}>1</Text>
-                        </View>
-                        <TouchableOpacity style={styles.minplus}>
-                          <Icon name={'plus'} size={15} color="black" />
-                        </TouchableOpacity>
-                      </View> 
-                      <View style={{flex:1}}>
+                  <View style={{position:'absolute',bottom:0, height:height-700,width:'100%', backgroundColor:'white',borderTopColor:'#aaa',borderTopWidth:1,flex:1}}>
+                      <View style={{flex:1,justifyContent: 'center'}}>
                       <TouchableOpacity style={{width:width-20,height:50,justifyContent:'center',alignItems:'center',marginHorizontal:10,backgroundColor:'#EC870E',borderRadius:10}} onPress={onAddToCart(isModal)}>
                           <Text style={{fontSize:16,fontWeight:'bold',color:'white'}}>Thêm sản phẩm</Text>
                         </TouchableOpacity>
                       </View>
                   </View>
               </Modal>
-            </View>           
+            </ScrollView>     
+          </SafeAreaView>      
            
     )
 }
@@ -225,7 +191,7 @@ const styles = StyleSheet.create({
       backgroundColor:'#F0F0D0',
       borderRadius:10,
       backgroundColor:'white',
-      marginBottom:height-650,
+      marginBottom:height-750,
     },
     modalimg:{
       flex:2,
@@ -273,25 +239,6 @@ txtthongbao:{
   fontSize:18,
   color:'#999999'
 },
-headicon:{
-  width:40,
-  height:40,
-  backgroundColor:'#F0F0F0',
-  justifyContent:'center',
-  alignItems:'center',
-  borderRadius:10,
-  marginRight:10
-},
-headtexticon:{
-  flexDirection:'row',
-  width:'70%',
-  height:40,
-  backgroundColor:'#F0F0F0',
-  justifyContent:'space-between',
-  alignItems:'center',
-  borderRadius:10, 
-  marginRight:10
-}
 })
 
 export default Dathang;

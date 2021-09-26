@@ -23,15 +23,19 @@ const Dangnhap = () => {
             console.log(error);
         }
     }
+    
     const onVerifyCode = async () =>{
         try {
             const response = await Login({ phone : phone, otp : code});
             console.log('rs', response.data);
+            console.log('token', response.data.token);
+            // AsyncStorage.setItem('token',response.data.token);
             setisVisible(false)
         } catch (error) {
             console.log(error.response);
         }
     }
+    
     return (
         <KeyboardAvoidingView 
          style={{flex:1}}
